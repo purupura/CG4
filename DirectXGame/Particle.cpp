@@ -5,6 +5,9 @@ void Particle::Initialize(Model* model) {
 	model_ = model;
 	worldTransform_.Initialize();
 
+	objectColor_.Initialize();
+	color_ = {1, 1, 0, 1};
+
 }
 
 void Particle::Update() { 

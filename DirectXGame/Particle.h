@@ -16,4 +16,8 @@ WorldTransform worldTransform_;
 
 	Model* model_ = nullptr;
 
+	ObjectColor objectColor_;
+
+	Vector4 color_;
+
 };
