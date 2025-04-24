@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include "algorithm"
 
 using namespace MathUtility;
 
@@ -16,6 +17,17 @@ void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 }
 
 void Particle::Update() {
+
+	if (isFinished) {
+		return;
+	}
+
+	counter_ += 1.0f / 60.0f;
+
+	if (counter_ >= kDuration) {
+		counter_ = kDuration;
+		isFinished = true;
+	}
 	worldTransform_.TransferMatrix();
 
 	objectColor_.SetColor(color_);
@@ -26,6 +38,7 @@ void Particle::Update() {
 
 	worldTransform_.UpdateMatrix();
 
+	color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
 }
 
 void Particle::Draw(Camera& camera) { 

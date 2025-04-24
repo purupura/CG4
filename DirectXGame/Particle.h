@@ -11,6 +11,8 @@ void Update();
 
 void Draw(Camera& camera);
 
+	bool IsFinished() { return isFinished; }
+
 private:
 WorldTransform worldTransform_;
 
@@ -21,5 +23,12 @@ WorldTransform worldTransform_;
 	Vector4 color_;
 
 	Vector3 velocity_;
+
+	bool isFinished = false;
+
+	float counter_ = 0.0f;
+
+	const float kDuration = 1.0f;
+
 
 };
