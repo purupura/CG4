@@ -2,13 +2,15 @@
 
 using namespace MathUtility;
 
-void Particle::Initialize(Model* model) { 
+void Particle::Initialize(Model* model, Vector3 position) { 
 	assert(model); 
 	model_ = model;
 	worldTransform_.Initialize();
 
 	objectColor_.Initialize();
 	color_ = {1, 1, 0, 1};
+
+	worldTransform_.translation_ = position;
 
 }
 
