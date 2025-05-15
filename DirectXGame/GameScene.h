@@ -21,6 +21,6 @@ private:
 	Model* modelEffect_ = nullptr;
 
 	Camera camera_;
+	std::list<Effect*> effects_;
 
-	Effect* effect_ = nullptr;
 };
