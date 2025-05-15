@@ -42,6 +42,8 @@ void Effect::Update() {
 		isFinished = true;
 	}
 
+	worldTransform_.rotation_.z++;
+
 	worldTransform_.TransferMatrix();
 	worldTransform_.UpdateMatrix();
 	objectColor_.SetColor(color_);
