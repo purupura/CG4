@@ -1,4 +1,9 @@
 #include "GameScene.h"
+#include <random>
+
+std::random_device seedGenerator2;
+std::mt19937 randomEngine2(seedGenerator2());
+std::uniform_real_distribution<float> distribution2(-1.0f, 1.0f);
 
 using namespace KamataEngine;
 
@@ -13,23 +18,18 @@ GameScene::~GameScene() {
 void GameScene::Initialize() {
 	modelEffect_ = Model::Model::CreateFromOBJ("diamond",true);
 
-	for (int i = 0; i < 10; i++) {
-		
-		Effect* effect = new Effect();
-
-		Vector3 position = {0.0f, 0.0f, 0.0f};
-
-		effect->Initialize(modelEffect_, position);
-
-		effects_.push_back(effect);
-
-	}
+	srand((unsigned)time(NULL));
 
 	camera_.Initialize();
 
 }
 
 void GameScene::Update() { 
+		if (rand() % 10 == 0) {
+		Vector3 position_ = {distribution2(randomEngine2) * 30.0f, distribution2(randomEngine2) * 20.0f, 0.0f};
+		EffectBorn(position_);
+	}
+
 	for (Effect* effect : effects_) {
 		effect->Update();
 	}
@@ -54,4 +54,22 @@ void GameScene::Draw() {
 	}
 
 	Model::PostDraw();
+}
+
+void GameScene::EffectBorn(Vector3 position) {
+
+
+
+	for (int i = 0; i < 10; i++) {
+
+		Effect* effect = new Effect();
+
+		Vector3 position_ = {0.0f, 0.0f, 0.0f};
+		position_ = position;
+
+		effect->Initialize(modelEffect_, position_);
+
+		effects_.push_back(effect);
+	}
+
 }

@@ -3,7 +3,11 @@
 
 std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
-std::uniform_real_distribution<float> distribution(10.0f, 30.0f);
+std::uniform_real_distribution<float> distribution(5.0f, 20.0f);
+
+std::random_device seedGenerator3;
+std::mt19937 randomEngine3(seedGenerator3());
+std::uniform_real_distribution<float> distribution3(0.0f, 10.0f);
 
 void Effect::Initialize(Model* model, Vector3 position) {
 	assert(model);
@@ -11,7 +15,7 @@ void Effect::Initialize(Model* model, Vector3 position) {
 	worldTransform_.Initialize();
 	
 	objectColor_.Initialize();
-	color_ = {0, 0, 1, 1};
+	color_ = {distribution3(randomEngine3), distribution3(randomEngine3), distribution3(randomEngine3), 1};
 
 	// 大きさ（スケール）のY軸を変更（例：3倍）
 	worldTransform_.scale_ = {1.0f, distribution(randomEngine), 1.0f};
