@@ -1,4 +1,5 @@
 #include "Effect.h"
+#include <cassert>
 
 void Effect::Initialize(Model* model) {
 	assert(model);
