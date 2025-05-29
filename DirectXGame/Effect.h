@@ -1,10 +1,11 @@
 #pragma once
 #include <KamataEngine.h>
+#include "Model2.h"
 
 using namespace KamataEngine;
 class Effect {
 public:
-	void Initialize(Model* model);
+	void Initialize(Model2* model);
 
 	void Update();
 
@@ -13,5 +14,5 @@ public:
 private:
 	WorldTransform worldTransform_;
 
-	Model* model_ = nullptr;
+	Model2* model_ = nullptr;
 };

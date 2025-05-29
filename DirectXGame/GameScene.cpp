@@ -5,10 +5,13 @@ using namespace KamataEngine;
 GameScene::~GameScene() {
 	delete modelEffect_;
 	delete effect_;
+
+	Model2::StaticFinalize();
 }
 
 void GameScene::Initialize() {
-	modelEffect_ = Model::Model::CreateFromOBJ("diamond",true);
+	Model2::StaticInitialize();
+	modelEffect_ = Model2::Model2::CreateFromOBJ("diamond", true);
 
 	effect_ = new Effect();
 
@@ -16,6 +19,8 @@ void GameScene::Initialize() {
 	effect_->Initialize(modelEffect_);
 
 	camera_.Initialize();
+
+	
 
 }
 
@@ -25,9 +30,9 @@ void GameScene::Draw() {
 
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
-	Model::PreDraw(dxCommon->GetCommandList());
+	Model2::PreDraw(dxCommon->GetCommandList());
 
 	effect_->Draw(camera_);
 
-	Model::PostDraw();
+	Model2::PostDraw();
 }

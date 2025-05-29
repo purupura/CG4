@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Effect.h"
+#include "Model2.h"
 
 class GameScene {
 public:
@@ -18,7 +19,7 @@ public:
 private:
 
 
-	Model* modelEffect_ = nullptr;
+	Model2* modelEffect_ = nullptr;
 
 	Camera camera_;
 

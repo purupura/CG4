@@ -1,7 +1,7 @@
 #include "Effect.h"
 #include <cassert>
 
-void Effect::Initialize(Model* model) {
+void Effect::Initialize(Model2* model) {
 	assert(model);
 	model_ = model;
 	worldTransform_.Initialize();
