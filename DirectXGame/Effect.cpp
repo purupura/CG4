@@ -1,5 +1,6 @@
 #include "Effect.h"
 #include <random>
+#include <cassert>
 
 std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
