@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include <cassert>
 
 using namespace KamataEngine;
 
@@ -11,7 +12,7 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 	Model2::StaticInitialize();
-	modelEffect_ = Model2::Model2::CreateFromOBJ("diamond", true);
+	modelEffect_ = Model2::Model2::CreateSquare();
 
 	effect_ = new Effect();
 
@@ -27,10 +28,20 @@ void GameScene::Initialize() {
 void GameScene::Update() { effect_->Update(); }
 
 void GameScene::Draw() {
-
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+	if (!dxCommon) {
+		// ここで nullptr なら即時エラー、初期化不足の可能性大
+		assert(false && "DirectXCommon is nullptr!");
+		return;
+	}
 
-	Model2::PreDraw(dxCommon->GetCommandList());
+	ID3D12GraphicsCommandList* cmdList = dxCommon->GetCommandList();
+	if (!cmdList) {
+		assert(false && "CommandList is nullptr!");
+		return;
+	}
+
+	Model2::PreDraw(cmdList);
 
 	effect_->Draw(camera_);
 

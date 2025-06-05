@@ -121,6 +121,8 @@ public: // 静的メンバ関数
 	/// <returns></returns>
 	static Model2* Create();
 
+	static Model2* CreateSquare();
+
 	/// <summary>
 	/// OBJファイルからメッシュ生成
 	/// </summary>

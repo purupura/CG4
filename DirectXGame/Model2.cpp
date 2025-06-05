@@ -41,6 +41,55 @@ Model2* Model2::Create() {
 	return instance;
 }
 
+Model2* Model2::CreateSquare() { 
+	Model2* instance = new Model2;
+	std::vector<Mesh::VertexPosNormalUv> vertices;
+	std::vector<uint32_t> indices;
+
+	const uint32_t kNumVertices = 4;
+	
+	const uint32_t kNumIndices = 6;
+
+	vertices.resize(kNumVertices);
+	indices.resize(kNumIndices);
+	// 左下
+	vertices[0].pos = {-0.5f, -0.5f, 0.0f};
+	vertices[0].uv = {0.0f, 1.0f};
+	vertices[0].normal = {0.0f, 0.0f, 1.0f};
+
+	// 左上
+	vertices[1].pos = {-0.5f, 0.5f, 0.0f};
+	vertices[1].uv = {0.0f, 0.0f};
+	vertices[1].normal = {0.0f, 0.0f, 1.0f};
+
+	// 右上
+	vertices[2].pos = {0.5f, 0.5f, 0.0f};
+	vertices[2].uv = {1.0f, 0.0f};
+	vertices[2].normal = {0.0f, 0.0f, 1.0f};
+
+	// 右下
+	vertices[3].pos = {0.5f, -0.5f, 0.0f};
+	vertices[3].uv = {1.0f, 1.0f};
+	vertices[3].normal = {0.0f, 0.0f, 1.0f};
+
+
+
+	// インデックス（2つの三角形で正方形を構成）
+	indices[0] = 0;
+	indices[1] = 1;
+	indices[2] = 2;
+
+	indices[3] = 0;
+	indices[4] = 2;
+	indices[5] = 3;
+
+
+	instance->InitializeFromVertices(vertices, indices);
+
+	return instance;
+
+}
+
 Model2* Model2::CreateFromOBJ(const std::string& modelname, bool smoothing) {
 	// メモリ確保
 	Model2* instance = new Model2;
