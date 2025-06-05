@@ -52,36 +52,39 @@ Model2* Model2::CreateSquare() {
 
 	vertices.resize(kNumVertices);
 	indices.resize(kNumIndices);
-	// 左下
-	vertices[0].pos = {-0.5f, -0.5f, 0.0f};
-	vertices[0].uv = {0.0f, 1.0f};
-	vertices[0].normal = {0.0f, 0.0f, 1.0f};
-
-	// 左上
-	vertices[1].pos = {-0.5f, 0.5f, 0.0f};
-	vertices[1].uv = {0.0f, 0.0f};
-	vertices[1].normal = {0.0f, 0.0f, 1.0f};
-
-	// 右上
-	vertices[2].pos = {0.5f, 0.5f, 0.0f};
-	vertices[2].uv = {1.0f, 0.0f};
-	vertices[2].normal = {0.0f, 0.0f, 1.0f};
-
-	// 右下
-	vertices[3].pos = {0.5f, -0.5f, 0.0f};
-	vertices[3].uv = {1.0f, 1.0f};
-	vertices[3].normal = {0.0f, 0.0f, 1.0f};
+	for (size_t i = 0; i < 10; i++) {
 
 
+		// 左下
+		vertices[0].pos = {-0.5f * i, -0.5f, 0.0f};
+		vertices[0].uv = {0.0f, 1.0f};
+		vertices[0].normal = {0.0f, 0.0f, 1.0f};
 
-	// インデックス（2つの三角形で正方形を構成）
-	indices[0] = 0;
-	indices[1] = 1;
-	indices[2] = 2;
+		// 左上
+		vertices[1].pos = {-0.5f * i, 0.5f, 0.0f};
+		vertices[1].uv = {0.0f, 0.0f};
+		vertices[1].normal = {0.0f, 0.0f, 1.0f};
 
-	indices[3] = 0;
-	indices[4] = 2;
-	indices[5] = 3;
+		// 右上
+		vertices[2].pos = {0.5f * i, 0.5f, 0.0f};
+		vertices[2].uv = {1.0f, 0.0f};
+		vertices[2].normal = {0.0f, 0.0f, 1.0f};
+
+		// 右下
+		vertices[3].pos = {0.5f * i, -0.5f , 0.0f};
+		vertices[3].uv = {1.0f, 1.0f};
+		vertices[3].normal = {0.0f, 0.0f, 1.0f};
+
+		// インデックス（2つの三角形で正方形を構成）
+		indices[0] = 0;
+		indices[1] = 1;
+		indices[2] = 2;
+
+		indices[3] = 0;
+		indices[4] = 2;
+		indices[5] = 3;
+	}
+	
 
 
 	instance->InitializeFromVertices(vertices, indices);
