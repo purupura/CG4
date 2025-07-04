@@ -25,10 +25,13 @@ class TitleScene {
 	bool IsGameFinished() const { return isGameFinished_; }
 
 	private:
+	Input* input_ = nullptr;
+	DirectXCommon* dxCommon_ = nullptr;
 	bool isGameFinished_ = false; // ゲーム終了フラグ
 
 	uint32_t textureHandle_ = 0;   
 	Sprite* titleSprite_ = nullptr; // タイトル画面の画像
-	Input* input_ = nullptr;
-	DirectXCommon* dxCommon_ = nullptr;
+	uint32_t textureHandle2_ = 0;
+	Sprite* PushSprite_ = nullptr;
+	int pushTimer_ = 120; // タイトル画面の画像を表示するためのタイマー
 };
