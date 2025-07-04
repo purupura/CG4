@@ -15,13 +15,20 @@ public:
 	// 描画
 	void Draw();
 
+	bool IsFinished() const { return isFinished_; }
 
 private:
-
+	DirectXCommon* dxCommon_ = nullptr;
 
 	Model2* modelEffect_ = nullptr;
 
 	Camera camera_;
 
 	Effect* effect_ = nullptr;
+
+	Input* input_ = nullptr;
+
+	bool isFinished_ = false;
+
+
 };

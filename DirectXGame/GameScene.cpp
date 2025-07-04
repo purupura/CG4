@@ -10,6 +10,9 @@ GameScene::~GameScene() {
 }
 
 void GameScene::Initialize() {
+	dxCommon_ = KamataEngine::DirectXCommon::GetInstance();
+	input_ = KamataEngine::Input::GetInstance();
+
 	Model2::StaticInitialize();
 	modelEffect_ = Model2::Model2::CreateFromOBJ("diamond", true);
 
@@ -24,7 +27,12 @@ void GameScene::Initialize() {
 
 }
 
-void GameScene::Update() { effect_->Update(); }
+void GameScene::Update() { 
+	effect_->Update();
+	if (input_->TriggerKey(DIK_SPACE)) {
+		isFinished_ = true;
+	}
+}
 
 void GameScene::Draw() {
 
@@ -35,4 +43,6 @@ void GameScene::Draw() {
 	effect_->Draw(camera_);
 
 	Model2::PostDraw();
+
+
 }
