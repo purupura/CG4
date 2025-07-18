@@ -15,6 +15,8 @@ public:
 	// 描画
 	void Draw();
 
+	void BackGroundUpdate();
+
 	bool IsFinished() const { return isFinished_; }
 
 private:
@@ -30,5 +32,7 @@ private:
 
 	bool isFinished_ = false;
 
-
+	uint32_t textureHandle_ = 0;
+	Sprite* backGroundSprite_ = nullptr; //背景の画像
+	Sprite* backGroundSprite2_ = nullptr;
 };
