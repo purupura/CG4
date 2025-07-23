@@ -16,6 +16,8 @@ void GameScene::Initialize() {
 	Model2::StaticInitialize();
 	modelEffect_ = Model2::Model2::CreateFromOBJ("diamond", true);
 
+	modelPlayer_ = Model2::Model2::CreateFromOBJ("cube", true);
+
 	textureHandle_ = KamataEngine::TextureManager::Load("backGraund.png");
 	backGroundSprite_ = new KamataEngine::Sprite();
 	backGroundSprite_ = Sprite::Create(textureHandle_, {0.0f,0.0f});
@@ -25,8 +27,11 @@ void GameScene::Initialize() {
 
 	effect_ = new Effect();
 
-
 	effect_->Initialize(modelEffect_);
+
+	player_ = new Player();
+
+	player_->Initialize(modelPlayer_);
 
 	camera_.Initialize();
 
@@ -36,6 +41,7 @@ void GameScene::Initialize() {
 
 void GameScene::Update() { 
 	effect_->Update();
+	player_->Update();
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isFinished_ = true;
 	}
@@ -59,6 +65,7 @@ void GameScene::Draw() {
 	Model2::PreDraw(dxCommon->GetCommandList());
 
 	effect_->Draw(camera_);
+	player_->Draw(camera_);
 
 	Model2::PostDraw();
 
