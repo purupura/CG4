@@ -5,6 +5,10 @@ using namespace KamataEngine;
 GameScene::~GameScene() {
 	delete modelEffect_;
 	delete effect_;
+	delete player_;
+	delete backGroundSprite_;
+	delete backGroundSprite2_;
+	delete modelPlayer_;
 
 	Model2::StaticFinalize();
 }
@@ -16,7 +20,7 @@ void GameScene::Initialize() {
 	Model2::StaticInitialize();
 	modelEffect_ = Model2::Model2::CreateFromOBJ("diamond", true);
 
-	modelPlayer_ = Model2::Model2::CreateFromOBJ("cube", true);
+	modelPlayer_ = Model2::Model2::CreateFromOBJ("player", true);
 
 	textureHandle_ = KamataEngine::TextureManager::Load("backGraund.png");
 	backGroundSprite_ = new KamataEngine::Sprite();
@@ -40,7 +44,6 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() { 
-	effect_->Update();
 	player_->Update();
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isFinished_ = true;
@@ -64,7 +67,6 @@ void GameScene::Draw() {
 
 	Model2::PreDraw(dxCommon->GetCommandList());
 
-	effect_->Draw(camera_);
 	player_->Draw(camera_);
 
 	Model2::PostDraw();

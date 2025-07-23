@@ -15,6 +15,7 @@ public:
 
 private:
 	WorldTransform worldTransform_;
+	DirectXCommon* dxCommon_ = nullptr;
 
 	Model2* model_ = nullptr;
 
