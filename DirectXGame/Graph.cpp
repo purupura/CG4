@@ -1,5 +1,13 @@
 #include "Graph.h"
 
+Graph::~Graph() { 
+	delete graphSprite_; 
+	delete graphSprite2_;
+	for (int i = 0; i < 5; i++) {
+		delete graphSprite3_[i];
+	}
+}
+
 void Graph::Initialize() {
 	dxCommon_ = KamataEngine::DirectXCommon::GetInstance();
 	input_ = KamataEngine::Input::GetInstance();
@@ -12,10 +20,19 @@ void Graph::Initialize() {
 
 	graphSprite2_ = Sprite::Create(textureHandle2_, {10.0f, 10.0f});
 
+	textureHandle3_ = KamataEngine::TextureManager::Load("number.png");
 
+
+
+	for (int i = 0; i < 5; i++) {
+		graphSprite3_[i] = Sprite::Create(textureHandle3_, {10.0f + numberSize.x * i, 50.0f});
+		graphSprite3_[i]->SetSize(numberSize);
+	}
+	
 }
 
 void Graph::Update() { 
+
 	if (nowGraphGage < 0) {
 		nowGraphGage = 1;
 	}
@@ -41,9 +58,29 @@ void Graph::Update() {
 	Vector4 color2 = graphSprite_->GetColor();
 	color2.w = 0.5f;
 	graphSprite_->SetColor(color2);
+
+
+	int displayNumber = number; 
+	int digit = 10000;
+	number--;
+	if (number< 0) {
+		number = 777;
+	}
+	for (int i = 0; i < 5; i++) {
+		int nowNumber = displayNumber / digit;
+		displayNumber %= digit;
+		digit /= 10;
+
+		graphSprite3_[i]->SetTextureRect({numberSize.x * nowNumber, 0}, numberSize);
+	}
 }
 
 void Graph::Draw() { 
 	graphSprite_->Draw();
 	graphSprite2_->Draw();
+
+	for (int i = 0; i < 5; i++) {
+		graphSprite3_[i]->Draw();
+	}
+
 }

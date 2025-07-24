@@ -9,6 +9,7 @@ GameScene::~GameScene() {
 	delete backGroundSprite_;
 	delete backGroundSprite2_;
 	delete modelPlayer_;
+	graph_->~Graph();
 
 	Model2::StaticFinalize();
 }
