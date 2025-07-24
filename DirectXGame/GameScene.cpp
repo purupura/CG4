@@ -39,12 +39,15 @@ void GameScene::Initialize() {
 
 	camera_.Initialize();
 
-	
+	graph_ = new Graph();
+
+	graph_->Initialize();
 
 }
 
 void GameScene::Update() { 
 	player_->Update();
+	graph_->Update();
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isFinished_ = true;
 	}
@@ -61,6 +64,7 @@ void GameScene::Draw() {
 	backGroundSprite_->Draw();
 	backGroundSprite2_->Draw();
 
+
 	Sprite::PostDraw();
 
 	dxCommon->ClearDepthBuffer();
@@ -71,6 +75,11 @@ void GameScene::Draw() {
 
 	Model2::PostDraw();
 
+	Sprite::PreDraw(dxCommon->GetCommandList());
+
+	graph_->Draw();
+
+	Sprite::PostDraw();
 
 }
 

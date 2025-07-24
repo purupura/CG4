@@ -3,6 +3,7 @@
 #include "Effect.h"
 #include "Model2.h"
 #include "Player.h"
+#include "Graph.h"
 
 class GameScene {
 public:
@@ -40,4 +41,6 @@ private:
 
 	// 　自キャラ
 	Player* player_ = nullptr;
+
+	Graph* graph_ = nullptr;
 };
